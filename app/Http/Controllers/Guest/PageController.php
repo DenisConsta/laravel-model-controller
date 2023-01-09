@@ -14,7 +14,17 @@ class PageController extends Controller
 
     public function movies(){
         $movies = Movie::all();
-
         return view('movies', compact('movies'));
+    }
+
+    public function about(){
+        return view('about');
+    }
+
+    public function movieDetail($id){
+        $movie = Movie::find($id);
+        if(is_null($movie)) abort(404, 'cannot find this movie :( ');
+        return view('movie-detail', compact('movie'));
+
     }
 }
